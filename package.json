@@ -1,0 +1,19 @@
+{
+  "name": "sgt-m4-final",
+  "version": "1.0.0",
+  "description": "Database for student grades with CRUD abilites.  Used as final project for Learning Fuze Fall 2019 Module 4 to demonstrate server andnode.js abilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twalt007/sgt-m4-final.git"
+  },
+  "author": "Tatumn Walter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twalt007/sgt-m4-final/issues"
+  },
+  "homepage": "https://github.com/twalt007/sgt-m4-final#readme"
+}
