@@ -29,19 +29,36 @@ module.exports = async(req,res)=>{
             res.status(output.code).send(output);
             return;
         }
-        if(record){
+
+
+        if(record && course){
             await db.execute(`
                 UPDATE grades
-                SET course=?, grade=?, name=? 
+                SET course=? 
                 WHERE pid=?`,
-                [course, grade, name, record_pid]);
-            const [[entry]] = await db.execute(`
+                [course, record_pid]);            
+        }
+        if(record && grade){
+            await db.execute(`
+                UPDATE grades
+                SET grade=? 
+                WHERE pid=?`,
+                [grade, record_pid]);            
+        }
+        if(record && name){
+            await db.execute(`
+                UPDATE grades
+                SET name=? 
+                WHERE pid=?`,
+                [name, record_pid]);            
+        }  
+        
+        const [[entry]] = await db.execute(`
                 SELECT pid, course, grade, name, updated AS lastUpdated FROM grades WHERE pid=?`,
                 [record_pid]);
-            output.message = `Student record for ${record_pid} successfully updated.`
-            output.record = entry
-        }        
-        
+
+        output.message = `Student record for ${record_pid} successfully updated.`
+        output.record = entry
         const {code, errors, ...o} = output;
 
         res.status(output.code).send({
