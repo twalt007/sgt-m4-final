@@ -1,9 +1,11 @@
-class ApiError extends Error {
-    constructor (status = 500, message = 'Internal Server Error'){
-        super(message);
+module.exports = (error, req, res, next) => {
+    let message = 'Internal Server Error';
+    let status = 500;
 
-        this.status = status;
+    if(error instanceof ApiError){
+        message = error.message;
+        status = error.status
     }
-}
 
-module.exports = ApiError;
+    res.status(status).send(message);
+}
