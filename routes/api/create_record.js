@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         if (grade && isNaN(grade) || grade > 100 || grade < 1) {
             output.errors.push(`Course grade must be a number between 0 and 100 inclusive. ${grade} is invalid.`);
         }
-        if (output.errors) {
+        if (output.errors.length) {
             res.status(output.code).send(output);
             return;
         };
