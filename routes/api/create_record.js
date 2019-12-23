@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
             VALUES (UUID(), ?, ?, ?)`,
             [course, grade, name]);
 
-        const [[entry]] = await db.execute(`
+        const [[entry]] = await db.query(`
             SELECT pid, course, grade, name, updated AS lastUpdated FROM grades WHERE id=LAST_INSERT_ID(); 
         `)
 
